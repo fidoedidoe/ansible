@@ -1,0 +1,13 @@
+---
+# This playbook setups up a workstation
+
+- name: apply common configuration to all nodes
+  hosts: all
+
+  roles:
+    - role: common
+      tags:
+        - always
+    - role: developer
+      tags: 
+        - developer

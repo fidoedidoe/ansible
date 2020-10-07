@@ -1,0 +1,47 @@
+---
+
+# sets up android development packages
+
+- name: Install APT Packages
+  become: true
+  apt:
+    name: "{{ item.name }}" 
+    cache_valid_time: 600
+    autoclean: true
+    autoremove: true
+    state: latest
+  loop:
+     "{{ apt_packages }}"
+
+- name: Install APT Packages for Ubuntu 18.04
+  become: true
+  apt:
+    name: "{{ item.name }}" 
+    cache_valid_time: 600
+    autoclean: true
+    autoremove: true
+    state: latest
+  loop:
+     "{{ apt_packages_18_04 }}"
+  when: 
+    ansible_distribution_version == ubuntu_18_04
+
+- name: Install APT Packages for Ubuntu 20.04
+  become: true
+  apt:
+    name: "{{ item.name }}" 
+    cache_valid_time: 600
+    autoclean: true
+    autoremove: true
+    state: latest
+  loop:
+     "{{ apt_packages_20_04 }}"
+  when: 
+    ansible_distribution_version == ubuntu_20_04
+
+- name: Copy Bash Developer Export template
+  template:
+    src: .bash_developer_exports.j2
+    dest: ~/.bash_developer_exports
+    mode: 0644
+

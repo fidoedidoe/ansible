@@ -1,0 +1,4 @@
+---
+
+#Set preferred Python on Host
+ansible_python_interpreter: /usr/bin/python3

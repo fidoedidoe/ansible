@@ -1,0 +1,74 @@
+---
+
+ - name: Add PPA's
+   become: true
+   apt_repository: 
+     repo: "{{ item.repo }}"
+     filename: "{{ item.filename }}"
+     update_cache: true
+   loop:
+     "{{ ppa_repo }}"
+   notify: Error Handler
+ 
+ - name: Add Google Chrome Repo block
+   block:
+ 
+   - name: Add Google Chrome Repo Signing Key 
+     become: true
+     apt_key:
+       url: "{{ chrome_repo_key }}"
+       state: present
+     notify: Error Handler
+
+   - name: Add Google Chrome Repo
+     become: true
+     apt_repository: 
+       repo: "{{ chrome_repo }}"
+       filename: google
+       update_cache: true
+     notify: Error Handler
+     when:
+       - ansible_architecture == architecture_x64
+
+ - name: Install APT Packages
+   become: true
+   apt:
+     name: "{{ item.name }}" 
+     cache_valid_time: 600
+     autoclean: true
+     autoremove: true
+     state: latest
+   loop:
+     "{{ apt_packages }}"
+
+ - name: Configure update-alternatives for python 2.x/3.x
+   become: true
+   alternatives:
+     link: "/usr/bin/{{ item.link }}"
+     name: "{{ item.link }}" 
+     path: "/usr/bin/{{ item.path }}"
+     priority: "{{ item.priority }}"
+   loop: 
+     "{{ update_alternatives_python }}"
+
+ - name: Clone Bash_Scripts Repo from GitHub
+   git: 
+     repo: https://github.com/fidoedidoe/bash_scripts.git
+     version: master
+     dest: ~/bash_scripts
+
+ - name: run apt-update-plus-cleanup.sh
+   become: true
+   command: /home/gavin/bash_scripts/apt-update-plus-cleanup.sh --dist-upgrade --no-prompt
+
+ - name: Copy Vim configuration 
+   copy:
+     src: .vimrc.j2 
+     dest: ~/.vimrc
+     mode: 0644
+
+ - name: Copy BashRC template 
+   template:
+     src: .bashrc.j2
+     dest: ~/.bashrc
+     mode: 0644

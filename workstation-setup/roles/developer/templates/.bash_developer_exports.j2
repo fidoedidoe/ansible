@@ -1,0 +1,11 @@
+export USE_CCACHE="{{ developer_exports_use_ccache }}"
+# export CCACHE_BASEDIR="$HOME" # Set Compile Cache location
+export CCACHE_DIR="{{ developer_exports_ccache_dir }}" # Set Compile Cache location
+# export CCACHE_TEMPDIR="$HOME/.ccache" # sets where ccache will put temporary files. The default is <cache_dir>/tmp
+export CCACHE_MAXSIZE="{{ developer_exports_ccache_max_size }}" # Set compile cache size
+export CCACHE_COMPRESS="{{ developer_exports_ccache_compress }}" # Save space in compile cache
+export CCACHE_COMPRESSLEVEL="{{ developer_exports_ccache_compress_level }}"  # increase ccache compression level (default 6, max 9)
+export CCACHE_EXEC="{{ developer_exports_ccache_exec }}"
+export ANDROID_JACK_VM_ARGS="{{ developer_exports_android_jack_vm_args }}"
+export JAVA_HOME="{{ developer_exports_java_home }}"
+export LC_ALL="{{ developer_exports_export_llc_all }}"

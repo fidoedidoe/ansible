@@ -1,0 +1,49 @@
+---
+
+# template/.bashrc.j2
+#####################
+
+bash_rc_histsize: 5000
+bash_rc_histfilesize: 10000
+
+
+#common/tasks/main.yml
+######################
+
+# 64_bit Architecture fact
+#-------------------------
+architecture_x64: x86_64
+
+# PPA's
+#------
+ppa_repo:
+  - { repo: 'ppa:jonathonf/vim',  filename: 'vim' }
+  - { repo: 'ppa:git-core/ppa',   filename: 'git' }
+ #- { repo: 'ppa:deadsnakes/ppa', filename: 'python3.9' } 
+
+# apt packages
+#------
+apt_packages:
+  - { name: 'vim' }
+  - { name: 'git' }
+  - { name: 'python3.8' }
+  # - { name: 'python3.9' }
+  - { name: 'google-chrome-stable' }
+
+# Python update-alternatives --config
+#------------------------------------
+update_alternatives_python: 
+  #- { link: 'python3',  path: 'python3.9', priority: '1' }
+  - { link: 'python3',  path: 'python3.8', priority: '2' }
+  - { link: 'python3',  path: 'python3.6', priority: '3' }
+  - { link: 'python2',  path: 'python2.7', priority: '1' }
+  # - { link: 'python',  path: 'python3.9', priority: '1' }
+  - { link: 'python',   path: 'python3.8', priority: '2' }
+  - { link: 'python',   path: 'python3.6', priority: '3' }
+  - { link: 'python',   path: 'python2.7', priority: '4' }
+
+
+# Google Chrome Repo Signing Key
+#-------------------------------
+chrome_repo: "deb [arch=amd64] https://dl.google.com/linux/chrome/deb/ stable main"
+chrome_repo_key: https://dl.google.com/linux/linux_signing_key.pub

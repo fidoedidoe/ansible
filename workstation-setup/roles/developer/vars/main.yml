@@ -1,0 +1,56 @@
+---
+
+# bash_developer_exports.j2
+###########################
+ 
+developer_exports_use_ccache: "1"
+developer_exports_ccache_dir: "$HOME/.ccache"
+developer_exports_ccache_max_size: "6G"
+developer_exports_ccache_compress: "1"
+developer_exports_ccache_compress_level: "9"
+developer_exports_ccache_exec: "/usr/bin/ccache"
+developer_exports_android_jack_vm_args: "-Xmx4g -Dfile.encoding=UTF-8 -XX:+TieredCompilation"
+developer_exports_java_home: "/usr/bin"
+developer_exports_export_llc_all: "C"
+
+#developer/tasks/main.yml
+######################
+
+
+# apt packages
+#------
+apt_packages_common:
+  - { name: 'bc' }
+  - { name: 'bison' }
+  - { name: 'build-essential' }
+  - { name: 'ccache' }
+  - { name: 'curl' }
+  - { name: 'flex' }
+  - { name: 'g++-multilib' }
+  - { name: 'imagemagick' }
+  - { name: 'g++-multilib' }
+  - { name: 'lib32ncurses5-dev' }
+  - { name: 'lib32z1-dev' }
+  - { name: 'liblz4-tool' }
+  - { name: 'libssl-dev' }
+  - { name: 'libxml2' }
+  - { name: 'libxml2-utils' }
+  - { name: 'lzop' }
+  - { name: 'openjdk-8-jdk' }
+  - { name: 'pngcrush' }
+  - { name: 'squashfs-tools' }
+  - { name: 'xsltproc' }
+  - { name: 'zip' }
+  - { name: 'zlib1g-dev' }
+
+apt_packages_18_04: 
+  - { name: 'lib32ncurses5-dev' }
+  - { name: 'libtinfo5' }
+
+apt_packages_20_04: 
+  - { name: 'lib32ncurses6-dev' }
+  - { name: 'libtinfo6' }
+
+
+ubuntu_18_04: "18.04"
+ubuntu_20_04: "20.04"

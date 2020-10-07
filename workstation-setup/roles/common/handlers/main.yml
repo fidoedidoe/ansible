@@ -1,0 +1,6 @@
+---
+#  handlers: for workstation setup 
+    - name: Error Handler
+      debug:
+        msg: " Distribution is {{ ansible_distribution }}\n architecture_x64 is {{ architecture_x64 }}"
+
