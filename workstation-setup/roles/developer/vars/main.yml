@@ -3,15 +3,15 @@
 # bash_developer_exports.j2
 ###########################
  
-developer_exports_use_ccache: "1"
-developer_exports_ccache_dir: "$HOME/.ccache"
-developer_exports_ccache_max_size: "6G"
-developer_exports_ccache_compress: "1"
-developer_exports_ccache_compress_level: "9"
-developer_exports_ccache_exec: "/usr/bin/ccache"
-developer_exports_android_jack_vm_args: "-Xmx4g -Dfile.encoding=UTF-8 -XX:+TieredCompilation"
-developer_exports_java_home: "/usr/bin"
-developer_exports_export_llc_all: "C"
+developer_exports_use_ccache: 1
+developer_exports_ccache_dir: $HOME/.ccache
+developer_exports_ccache_max_size: 6G
+developer_exports_ccache_compress: 1
+developer_exports_ccache_compress_level: 9
+developer_exports_ccache_exec: /usr/bin/ccache
+developer_exports_android_jack_vm_args: -Xmx4g -Dfile.encoding=UTF-8 -XX:+TieredCompilation
+developer_exports_java_home: /usr/bin
+developer_exports_export_llc_all: C
 
 #developer/tasks/main.yml
 ######################
@@ -19,7 +19,7 @@ developer_exports_export_llc_all: "C"
 
 # apt packages
 #------
-apt_packages_common:
+developer_apt_packages:
   - { name: 'bc' }
   - { name: 'bison' }
   - { name: 'build-essential' }
@@ -27,12 +27,18 @@ apt_packages_common:
   - { name: 'curl' }
   - { name: 'flex' }
   - { name: 'g++-multilib' }
+  - { name: 'gcc-multilib' }
+  - { name: 'git' }
+  - { name: 'gnupg' }
+  - { name: 'gperf' }
   - { name: 'imagemagick' }
-  - { name: 'g++-multilib' }
   - { name: 'lib32ncurses5-dev' }
+  - { name: 'lib32readline-dev' }
   - { name: 'lib32z1-dev' }
   - { name: 'liblz4-tool' }
+  - { name: 'libsdl1.2-dev' }
   - { name: 'libssl-dev' }
+  - { name: 'libwxgtk3.0-gtk3-dev' }
   - { name: 'libxml2' }
   - { name: 'libxml2-utils' }
   - { name: 'lzop' }
@@ -40,17 +46,16 @@ apt_packages_common:
   - { name: 'pngcrush' }
   - { name: 'squashfs-tools' }
   - { name: 'xsltproc' }
+  - { name: 'yasm' }
   - { name: 'zip' }
   - { name: 'zlib1g-dev' }
 
-apt_packages_18_04: 
-  - { name: 'lib32ncurses5-dev' }
+developer_apt_packages_18_04: 
+  - { name: 'libncurses5' }
+  - { name: 'libncurses5-dev' }
   - { name: 'libtinfo5' }
 
-apt_packages_20_04: 
-  - { name: 'lib32ncurses6-dev' }
+developer_apt_packages_20_04: 
+  - { name: 'libncurses6' }
+  - { name: 'libncurses6-dev' }
   - { name: 'libtinfo6' }
-
-
-ubuntu_18_04: "18.04"
-ubuntu_20_04: "20.04"

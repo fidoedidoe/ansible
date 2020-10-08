@@ -23,7 +23,7 @@ ppa_repo:
 
 # apt packages
 #------
-apt_packages:
+common_apt_packages:
   - { name: 'vim' }
   - { name: 'git' }
   - { name: 'python3.8' }
@@ -45,5 +45,5 @@ update_alternatives_python:
 
 # Google Chrome Repo Signing Key
 #-------------------------------
-chrome_repo: "deb [arch=amd64] https://dl.google.com/linux/chrome/deb/ stable main"
+chrome_repo: deb [arch=amd64] https://dl.google.com/linux/chrome/deb/ stable main
 chrome_repo_key: https://dl.google.com/linux/linux_signing_key.pub

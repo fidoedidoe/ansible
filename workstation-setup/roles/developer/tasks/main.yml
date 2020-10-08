@@ -1,8 +1,8 @@
 ---
 
-# sets up android development packages
+# sets up android development packages for Ubuntu Workstations
 
-- name: Install APT Packages
+- name: Install APT Packages common to all Ubuntu Workstations
   become: true
   apt:
     name: "{{ item.name }}" 
@@ -11,22 +11,11 @@
     autoremove: true
     state: latest
   loop:
-     "{{ apt_packages }}"
-
-- name: Install APT Packages for Ubuntu 18.04
-  become: true
-  apt:
-    name: "{{ item.name }}" 
-    cache_valid_time: 600
-    autoclean: true
-    autoremove: true
-    state: latest
-  loop:
-     "{{ apt_packages_18_04 }}"
+    "{{ developer_apt_packages }}"
   when: 
-    ansible_distribution_version == ubuntu_18_04
+    - ansible_distribution == ubuntu_distribution 
 
-- name: Install APT Packages for Ubuntu 20.04
+- name: Install APT Packages for Ubuntu 18.04 Workstations
   become: true
   apt:
     name: "{{ item.name }}" 
@@ -35,13 +24,44 @@
     autoremove: true
     state: latest
   loop:
-     "{{ apt_packages_20_04 }}"
+    "{{ developer_apt_packages_18_04 }}"
   when: 
-    ansible_distribution_version == ubuntu_20_04
+    - ansible_distribution == ubuntu_distribution
+    - ansible_distribution_version == ubuntu_distribution_version_18_04
 
-- name: Copy Bash Developer Export template
+- name: Install APT Packages specific to Ubuntu 20.04 Workstations
+  become: true
+  apt:
+    name: "{{ item.name }}" 
+    cache_valid_time: 600
+    autoclean: true
+    autoremove: true
+    state: latest
+  loop:
+    "{{ developer_apt_packages_20_04 }}"
+  when: 
+    - ansible_distribution == ubuntu_distribution
+    - ansible_distribution_version == ubuntu_distribution_version_20_04
+
+- name: Copy Bash Developer Export template for Ubuntu Workstations
   template:
     src: .bash_developer_exports.j2
     dest: ~/.bash_developer_exports
-    mode: 0644
+    mode: u=rw,g=r,o=r
+  when: 
+    - ansible_distribution == ubuntu_distribution
 
+- name: Download repo block
+  block:
+
+    - name: create ~/bin directory
+      file:
+        path: ~/bin
+        state: directory
+        mode: u=rwx,g=rx,o=rx
+
+    - name: Download 'repo' from google
+      get_url:
+        url: https://storage.googleapis.com/git-repo-downloads/repo
+        dest: ~/bin/
+        mode: u=rwx,g=rx,o=rx

@@ -2,3 +2,7 @@
 
 #Set preferred Python on Host
 ansible_python_interpreter: /usr/bin/python3
+
+ubuntu_distribution: "Ubuntu"
+ubuntu_distribution_version_18_04: "18.04"
+ubuntu_distribution_version_20_04: "20.04"
