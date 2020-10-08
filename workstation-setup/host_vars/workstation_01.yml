@@ -2,3 +2,4 @@
 
 ansible_host: localhost
 ansible_port: 2222
+host_is_headless: false

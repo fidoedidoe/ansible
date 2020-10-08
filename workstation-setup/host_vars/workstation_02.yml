@@ -2,5 +2,6 @@
 
 ansible_user: ubuntu
 ansible_ssh_private_key_file: ~/.ssh/Ubuntu-Test-EC2.pem
-ansible_host: ec2-18-130-156-183.eu-west-2.compute.amazonaws.com 
+ansible_host: ec2-35-176-2-130.eu-west-2.compute.amazonaws.com
 ansible_port: 22
+host_is_headless: true

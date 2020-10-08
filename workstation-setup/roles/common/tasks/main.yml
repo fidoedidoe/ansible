@@ -26,9 +26,6 @@
      apt_key:
        url: "{{ chrome_repo_key }}"
        state: present
-     when:
-       - ansible_distribution == ubuntu_distribution
-       - ansible_architecture == architecture_x64
      notify: Error Handler
    
    - name: Add Google Chrome Repo
@@ -36,10 +33,12 @@
        repo: "{{ chrome_repo }}"
        filename: google
        update_cache: true
-     when:
-       - ansible_distribution == ubuntu_distribution
-       - ansible_architecture == architecture_x64
      notify: Error Handler
+
+   when:
+     - ansible_distribution == ubuntu_distribution
+     - ansible_architecture == architecture_x64
+     - not host_is_headless                         # Only install on non headless machines
 
  - name: Install APT Packages
    become: true
