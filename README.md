@@ -10,6 +10,10 @@
 ```
 ansible-playbook -i workstations site.yml --ask-become-pass
 ansible-playbook -i workstations site.yml --skip-tags "developer" --ask-become-pass
+ansible-playbook -i workstations site.yml --skip-tags "developer" --ask-become-pass --syntax-check
+ansible-playbook -i workstations site.yml --skip-tags "developer" --ask-become-pass --check --diff
+ansible-playbook -i workstations site.yml --skip-tags "developer" --ask-become-pass --list-hosts
+ansible-playbook -i workstations site.yml --limit workstation_01 --skip-tags "developer" --ask-become-pass
 ```
 
 ###### misc ad-hoc ansible  

@@ -27,8 +27,9 @@ common_apt_packages:
   - { name: 'vim' }
   - { name: 'git' }
   - { name: 'python3.8' }
+  - { name: 'shellcheck' }
   # - { name: 'python3.9' }
-  - { name: 'google-chrome-stable' }
+  # - { name: 'google-chrome-stable' }
 
 # Python update-alternatives --config
 #------------------------------------

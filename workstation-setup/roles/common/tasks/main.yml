@@ -1,5 +1,11 @@
 ---
 
+ - name: Run apt update (present)
+   become: true
+   apt:
+     update_cache: true
+     dpkg_options: 'force-confold,force-confdef'
+
  - name: Add PPA's
    become: true
    apt_repository: 
@@ -13,19 +19,19 @@
    notify: Error Handler
  
  - name: Add Google Chrome Repo block
+   become: true
    block:
  
    - name: Add Google Chrome Repo Signing Key 
-     become: true
      apt_key:
        url: "{{ chrome_repo_key }}"
        state: present
      when:
        - ansible_distribution == ubuntu_distribution
+       - ansible_architecture == architecture_x64
      notify: Error Handler
-
+   
    - name: Add Google Chrome Repo
-     become: true
      apt_repository: 
        repo: "{{ chrome_repo }}"
        filename: google
@@ -59,6 +65,8 @@
      "{{ update_alternatives_python }}"
    when:
      - ansible_distribution == ubuntu_distribution
+   # we can ignore errors here, it just means not all the versuons of Python are installed. 
+   ignore_errors: true
 
  - name: Clone Bash_Scripts Repo from GitHub
    git: 
@@ -70,7 +78,7 @@
 
  - name: run apt-update-plus-cleanup.sh
    become: true
-   command: /home/gavin/bash_scripts/apt-update-plus-cleanup.sh --dist-upgrade --no-prompt
+   command: "/home/{{ ansible_user_id }}/bash_scripts/apt-update-plus-cleanup.sh --no-prompt"
    when:
      - ansible_distribution == ubuntu_distribution
 
