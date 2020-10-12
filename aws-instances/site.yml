@@ -1,0 +1,15 @@
+---
+# This playbook setups up a workstation
+
+- name: apply common configuration to all nodes
+  hosts: all
+  gather_facts: false
+
+  roles:
+    - role: stop_aws_instances
+      tags:
+        - stop_instances
+  
+    - role: start_aws_instances
+      tags:
+        - start_instances
