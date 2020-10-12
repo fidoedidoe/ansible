@@ -12,13 +12,15 @@ Ansible roles:
 
 Run playbook:
 ```
-ansible-playbook -i workstations site.yml --ask-become-pass
-ansible-playbook -i workstations site.yml --skip-tags "developer" --ask-become-pass
-ansible-playbook -i workstations site.yml --skip-tags "developer" --ask-become-pass --syntax-check
-ansible-playbook -i workstations site.yml --skip-tags "developer" --ask-become-pass --check --diff
-ansible-playbook -i workstations site.yml --skip-tags "developer" --ask-become-pass --list-hosts
-ansible-playbook -i workstations site.yml --limit workstation_01 --skip-tags "developer" --ask-become-pass
-ansible-playbook -i inventory_aws_ec2.yml -i workstations site.yml --tags "aws_gather_info, common" --ask-become-pass
+ansible-playbook -i workstations.yml site.yml --ask-become-pass
+ansible-playbook -i workstations.yml site.yml --skip-tags "developer" --ask-become-pass
+ansible-playbook -i workstations.yml site.yml --skip-tags "developer" --ask-become-pass --syntax-check
+ansible-playbook -i workstations.yml site.yml --skip-tags "developer" --ask-become-pass --check --diff
+ansible-playbook -i workstations.yml site.yml --skip-tags "developer" --ask-become-pass --list-hosts
+ansible-playbook -i workstations.yml site.yml --limit workstation_01 --skip-tags "developer" --ask-become-pass
+ansible-playbook -i inventory_aws_ec2.yml -i workstations.yml site.yml --tags "common" --ask-become-pass
+ansible-playbook -i inventory_aws_ec2.yml site.yml --tags "aws_stop"
+ansible-playbook -i inventory_aws_ec2.yml site.yml --tags "aws_start"
 ```
 ---
 #### aws-instances: start/stop instances using dynamic inventory
