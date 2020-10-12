@@ -1,7 +1,0 @@
-# workstations
-# workstation_01 - VirtualBox Local Instance
-# workstation_02 - AWS EC2 t2.micro Instance 
-
-[workstations]
-workstation_01
-#workstation_02 
