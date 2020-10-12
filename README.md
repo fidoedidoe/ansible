@@ -16,6 +16,24 @@ ansible-playbook -i workstations site.yml --skip-tags "developer" --ask-become-p
 ansible-playbook -i workstations site.yml --limit workstation_01 --skip-tags "developer" --ask-become-pass
 ```
 
+###### aws-instances: start/stop instances using dynamic inventory
+
+**Ansible roles:**
+- start_aws_instances: 
+- stop_aws_instances: 
+
+**Run inventory:**
+```
+ansible-inventory -i inventory_aws_ec2.yml --graph
+```
+
+**Run inventory:**
+```
+ansible-playbook -i inventory_aws_ec2.yml site.yml --tags "start_instances"
+ansible-playbook -i inventory_aws_ec2.yml site.yml --tags "stop_instances"
+```
+
+
 ###### misc ad-hoc ansible  
 **execute examples:**
 ```
