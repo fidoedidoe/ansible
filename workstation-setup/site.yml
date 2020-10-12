@@ -2,12 +2,34 @@
 # This playbook setups up a workstation
 
 - name: apply common configuration to all nodes
-  hosts: all
-
+  hosts: workstations
+  gather_facts: true
+   
   roles:
     - role: common
       tags:
-        - always
+        - common
     - role: developer
       tags: 
         - developer
+
+- name: apply common configuration to all nodes
+  hosts: aws_ec2
+  gather_facts: true
+   
+  roles:
+    - role: aws_instance_gather_info
+      tags:
+        - aws_gather_info
+    - role: common
+      tags:
+        - common
+    - role: developer
+      tags: 
+        - developer
+    - role: aws_instance_stop
+      tags:
+        - aws_stop
+    - role: aws_instance_start
+      tags:
+        - aws_start

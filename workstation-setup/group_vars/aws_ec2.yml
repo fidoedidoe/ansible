@@ -1,0 +1,8 @@
+---
+
+
+ansible_port: 22
+ansible_ssh_private_key_file: ~/.ssh/Ubuntu-Test-EC2.pem
+ansible_user: ubuntu
+region: eu-west-2
+host_is_headless: true
