@@ -1,10 +1,10 @@
 ---
 # This playbook setups up a workstation
 
-- name: apply common configuration to all nodes
-  hosts: all            # ie workstations and aws_ec2
+- name: Common configuration for VirtualBox nodes
+  #hosts: all            
+  hosts: virtual_box
   gather_facts: true
-   
   roles:
     - role: common
       tags:
@@ -13,17 +13,22 @@
       tags: 
         - developer
 
-- name: apply common configuration to all nodes
+- name: start aws_ec2 nodes
   hosts: aws_ec2
-  gather_facts: true
-   
+  gather_facts: false                 # No need to gather (ssh) facts for aws_ec2 nodes
   roles:
+    - role: common
+      tags:
+        - common
+    - role: developer
+      tags: 
+        - developer
+    - role: aws_instance_start
+      tags:
+        - aws_start
     - role: aws_instance_gather_info
       tags:
         - aws_gather_info
     - role: aws_instance_stop
       tags:
         - aws_stop
-    - role: aws_instance_start
-      tags:
-        - aws_start

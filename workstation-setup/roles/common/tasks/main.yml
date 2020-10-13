@@ -53,19 +53,59 @@
    when:
      - ansible_distribution == ubuntu_distribution
 
- - name: Configure update-alternatives for python 2.x/3.x
-   become: true
-   alternatives:
-     link: "/usr/bin/{{ item.link }}"
-     name: "{{ item.link }}" 
-     path: "/usr/bin/{{ item.path }}"
-     priority: "{{ item.priority }}"
-   loop: 
-     "{{ update_alternatives_python }}"
-   when:
-     - ansible_distribution == ubuntu_distribution
-   # we can ignore errors here, it just means not all the versuons of Python are installed. 
-   ignore_errors: true
+ #- name: check for python 2.7
+ #  stat: 
+ #    path: /usr/bin/python2.7
+ #  register: pytnon_2_7
+
+ #- name: check for python 3.6
+ #  stat: path=/usr/bin/python3.6
+ #  register: pytnon_3_6
+
+ #- name: Configure update-alternatives for python 2.7
+ #  become: true
+ #  alternatives:
+ #    link: "/usr/bin/{{ item.link }}"
+ #    name: "{{ item.link }}"
+ #    path: "/usr/bin/{{ item.path }}"
+ #    priority: "{{ item.priority }}"
+ #  loop: 
+ #    "{{ update_alternatives_python_2_7 }}"
+ #  when:
+ #    - pytnon_2_7.stat.exists
+ #    - ansible_distribution == ubuntu_distribution
+ #  # we can ignore errors here, it just means not all the versuons of Python are installed. 
+ #  #ignore_errors: true
+
+ #- name: Configure update-alternatives for python 3.6
+ #  become: true
+ #  alternatives:
+ #    link: "/usr/bin/{{ item.link }}"
+ #    name: "{{ item.link }}"
+ #    path: "/usr/bin/{{ item.path }}"
+ #    priority: "{{ item.priority }}"
+ #  loop: 
+ #    "{{ update_alternatives_python_3_6 }}"
+ #  when:
+ #    - pytnon_3_6.stat.exists
+ #    - ansible_distribution == ubuntu_distribution
+ #  # we can ignore errors here, it just means not all the versuons of Python are installed. 
+ #  #ignore_errors: true
+
+ #- name: Configure update-alternatives for python 3.8
+ #  become: true
+ #  alternatives:
+ #    link: "/usr/bin/{{ item.link }}"
+ #    name: "{{ item.link }}"
+ #    path: "/usr/bin/{{ item.path }}"
+ #    priority: "{{ item.priority }}"
+ #  loop: 
+ #    "{{ update_alternatives_python_3_8 }}"
+ #  when:
+ #    # - pytnon_3_8.stat.exists                       #No need for this condition, installed in apt section above. 
+ #    - ansible_distribution == ubuntu_distribution
+ #  # we can ignore errors here, it just means not all the versuons of Python are installed. 
+ #  #ignore_errors: true
 
  - name: Clone Bash_Scripts Repo from GitHub
    git: 

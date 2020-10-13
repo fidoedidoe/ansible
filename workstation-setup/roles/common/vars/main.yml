@@ -33,15 +33,21 @@ common_apt_packages:
 
 # Python update-alternatives --config
 #------------------------------------
-update_alternatives_python: 
-  #- { link: 'python3',  path: 'python3.9', priority: '1' }
-  - { link: 'python3',  path: 'python3.8', priority: '2' }
-  - { link: 'python3',  path: 'python3.6', priority: '3' }
+update_alternatives_python_2_7: 
   - { link: 'python2',  path: 'python2.7', priority: '1' }
-  # - { link: 'python',  path: 'python3.9', priority: '1' }
-  - { link: 'python',   path: 'python3.8', priority: '2' }
-  - { link: 'python',   path: 'python3.6', priority: '3' }
   - { link: 'python',   path: 'python2.7', priority: '4' }
+
+update_alternatives_python_3_6: 
+  - { link: 'python3',  path: 'python3.6', priority: '3' }
+  - { link: 'python',   path: 'python3.6', priority: '3' }
+
+update_alternatives_python_3_8: 
+  - { link: 'python3',  path: 'python3.8', priority: '2' }
+  - { link: 'python',   path: 'python3.8', priority: '2' }
+
+#update_alternatives_python_3_9: 
+#  - { link: 'python3',  path: 'python3.9', priority: '1' }
+#  - { link: 'python',   path: 'python3.9', priority: '1' }
 
 
 # Google Chrome Repo Signing Key

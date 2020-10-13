@@ -1,6 +1,6 @@
 ---
 
-- name: gather aws instance facts
-  community.aws.ec2_instance_facts:
+- name: aws instance gather info 
+  community.aws.ec2_instance_info:
     region: "{{ region }}"
   delegate_to: localhost

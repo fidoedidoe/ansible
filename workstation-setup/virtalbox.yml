@@ -1,4 +1,4 @@
-workstations: 
+virtualbox: 
   hosts: 
     workstation_01
     #workstation_02 
