@@ -1,5 +1,5 @@
 ---
-# tasks file for aws_instance_provision
+# tasks file for aws_instance_gather_info
 
 - name: gather aws info (facts)
   block: 

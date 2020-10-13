@@ -1,5 +1,4 @@
 ---
-# This playbook setups up a workstation
 
 - name: execute functional roles based tags passed into playbook
   hosts: localhost
