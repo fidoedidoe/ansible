@@ -3,7 +3,7 @@
 
 - name: Common configuration for VirtualBox nodes
   #hosts: all            
-  hosts: virtual_box
+  hosts: virtualbox
   gather_facts: true
   roles:
     - role: common
