@@ -1,0 +1,20 @@
+---
+
+- name: aws instance stop block
+  block: 
+
+    - name:  aws instance stop
+      community.aws.ec2_instance:
+        state: stopped
+        region: "{{ region }}"
+        filters:
+          instance-state-name: running
+      register: result_stopped
+
+    - name: stopped instances id's
+      debug:
+        msg: "ID: {{ item.instance_id }} - State: {{ item.state.name }} - Public DNS: {{ item.public_dns_name }}"
+      loop: "{{ result_stopped.instances }}"
+
+  #tags: always
+  tags: ['never', 'aws_instance_stop']

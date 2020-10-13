@@ -1,15 +1,28 @@
 ---
 # This playbook setups up a workstation
 
-- name: apply common configuration to all nodes
-  hosts: all
+- name: execute functional roles based tags passed into playbook
+  hosts: localhost
+  connection: local
   gather_facts: false
 
   roles:
-    - role: stop_aws_instances
+    - role: aws_instance_provision
       tags:
-        - stop_instances
-  
-    - role: start_aws_instances
+        - aws_instance_provision
+
+    - role: aws_instance_gather_info
       tags:
-        - start_instances
+        - aws_instance_gather_info
+
+    - role: aws_instance_start
+      tags:
+        - aws_instance_start
+
+    - role: aws_instance_stop
+      tags:
+        - aws_instance_stop
+
+    - role: aws_instance_terminate
+      tags:
+        - aws_instance_terminate

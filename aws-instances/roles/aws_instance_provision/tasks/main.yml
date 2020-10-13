@@ -1,0 +1,31 @@
+---
+
+- name: provision ec2 instance block 
+  block: 
+
+    - name: Provision ec2 instance(s)
+      community.aws.ec2_instance:
+        key_name: Ubuntu-Test-EC2
+        security_groups: 
+          - sg-001d137bb721caa35
+        image_id: ami-05c424d59413a2876  #Ubuntu 20.04 t2.micro (free tier)
+        instance_type: t2.micro
+        region: "{{ region }}"
+        wait: true
+        tags:
+          name: Ubuntu Test EC2 Micro (free)
+          storage: 8GB
+        volumes: 
+          - device_name: /dev/sda1
+            ebs: 
+              delete_on_termination: yes
+              volume_size: 8
+              volume_type: gp2           # General Purpose SSD (gp2)
+      register: result_provision
+
+    - name: provisioned instance id's
+      debug:
+        msg: "ID: {{ item.instance_id }} - State: {{ item.state.name }} - Public DNS: {{ item.public_dns_name }}"
+      loop: "{{ result_provision.instances }}"
+
+  tags: ['never', 'aws_instance_provision']

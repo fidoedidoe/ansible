@@ -20,23 +20,28 @@ ansible-playbook -i virtualbox.yml site.yml --skip-tags "developer" --ask-become
 ansible-playbook -i virtualbox.yml site.yml --limit workstation_01 --tags "common, developer" --ask-become-pass
 ansible-playbook -i virtualbox.yml -i inventory_aws_ec2.yml site.yml --tags "common" --ask-become-pass
 ```
----
-#### aws-instances: start/stop instances using dynamic inventory
-
-roles:
-- start_aws_instances: 
-- stop_aws_instances: 
-
 Run ansible-inventory:
 ```
 ansible-inventory -i virtualbox.yml --graph
 ansible-inventory -i inventory_aws_ec2.yml --graph
 ```
+---
+#### aws-instances: start/stop instances using dynamic inventory
+
+roles:
+- aws_instance_provision: 
+- aws_instance_gather_info:
+- aws_instance_start:
+- aws_instance_stop:
+- aws_instance_terminate: 
 
 Run playbook:
 ```
-ansible-playbook -i inventory_aws_ec2.yml site.yml --tags "aws_start"
-ansible-playbook -i inventory_aws_ec2.yml site.yml --tags "aws_stop"
+ansible-playbook -i inventory_aws_ec2.yml site.yml --tags="aws_instance_provision"
+ansible-playbook -i inventory_aws_ec2.yml site.yml --tags="aws_instance_gather_info"
+ansible-playbook -i inventory_aws_ec2.yml site.yml --tags="aws_instance_start"
+ansible-playbook -i inventory_aws_ec2.yml site.yml --tags="aws_instance_stop"
+ansible-playbook -i inventory_aws_ec2.yml site.yml --tags="aws_instance_terminate"
 ```
 ---
 #### misc ad-hoc ansible  

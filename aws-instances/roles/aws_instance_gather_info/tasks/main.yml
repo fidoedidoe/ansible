@@ -1,0 +1,18 @@
+---
+# tasks file for aws_instance_provision
+
+- name: gather aws info (facts)
+  block: 
+
+    - name: Get instances info
+      community.aws.ec2_instance_info:
+        region: "{{ region }}"
+      register: result
+
+    - name: gathered instances id's
+      debug:
+        msg: "ID: {{ item.instance_id }} - State: {{ item.state.name }} - Public DNS: {{ item.public_dns_name }}"
+      loop: "{{ result.instances }}"
+
+  #tags: always
+  tags: ['never', 'aws_instance_gather_info']
