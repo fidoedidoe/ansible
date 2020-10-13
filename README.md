@@ -12,15 +12,13 @@ Ansible roles:
 
 Run playbook:
 ```
-ansible-playbook -i workstations.yml site.yml --ask-become-pass
-ansible-playbook -i workstations.yml site.yml --skip-tags "developer" --ask-become-pass
-ansible-playbook -i workstations.yml site.yml --skip-tags "developer" --ask-become-pass --syntax-check
-ansible-playbook -i workstations.yml site.yml --skip-tags "developer" --ask-become-pass --check --diff
-ansible-playbook -i workstations.yml site.yml --skip-tags "developer" --ask-become-pass --list-hosts
-ansible-playbook -i workstations.yml site.yml --limit workstation_01 --skip-tags "developer" --ask-become-pass
-ansible-playbook -i inventory_aws_ec2.yml -i workstations.yml site.yml --tags "common" --ask-become-pass
-ansible-playbook -i inventory_aws_ec2.yml site.yml --tags "aws_stop"
-ansible-playbook -i inventory_aws_ec2.yml site.yml --tags "aws_start"
+ansible-playbook -i virtualbox.yml site.yml --ask-become-pass
+ansible-playbook -i virtualbox.yml site.yml --skip-tags "developer" --ask-become-pass
+ansible-playbook -i virtualbox.yml site.yml --skip-tags "developer" --ask-become-pass --syntax-check
+ansible-playbook -i virtualbox.yml site.yml --skip-tags "developer" --ask-become-pass --check --diff
+ansible-playbook -i virtualbox.yml site.yml --skip-tags "developer" --ask-become-pass --list-hosts
+ansible-playbook -i virtualbox.yml site.yml --limit workstation_01 --tags "common, developer" --ask-become-pass
+ansible-playbook -i virtualbox.yml -i inventory_aws_ec2.yml site.yml --tags "common" --ask-become-pass
 ```
 ---
 #### aws-instances: start/stop instances using dynamic inventory
@@ -31,13 +29,14 @@ roles:
 
 Run ansible-inventory:
 ```
+ansible-inventory -i virtualbox.yml --graph
 ansible-inventory -i inventory_aws_ec2.yml --graph
 ```
 
 Run playbook:
 ```
-ansible-playbook -i inventory_aws_ec2.yml site.yml --tags "start_instances"
-ansible-playbook -i inventory_aws_ec2.yml site.yml --tags "stop_instances"
+ansible-playbook -i inventory_aws_ec2.yml site.yml --tags "aws_start"
+ansible-playbook -i inventory_aws_ec2.yml site.yml --tags "aws_stop"
 ```
 ---
 #### misc ad-hoc ansible  
