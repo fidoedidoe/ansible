@@ -1,0 +1,20 @@
+---
+
+- name: aws ec2 terminate block
+  block: 
+
+    - name: aws ec2 terminate 
+      community.aws.ec2_instance:
+        state: 'absent'
+        filters: 
+          "tag:name": Ubuntu Test EC2 Micro (free)
+          
+      register: result_terminate
+    
+    - name: aws ec2 terminate - instance id's
+      debug:
+        msg: "ID: {{ item.instance_id }} ; Type: {{ item.instance_type }} ; State: {{ item.state.name }}"
+      loop: "{{ result_terminate.instances }}"
+
+  tags: ['never', 'aws_ec2_termimate']
+

@@ -1,0 +1,27 @@
+---
+
+- name: execute functional roles based on tags passed into playbook
+  hosts: localhost
+  connection: local
+  gather_facts: false
+
+  roles:
+    - role: aws_ec2_provision
+      tags:
+        - aws_ec2_provision
+
+    - role: aws_ec2_info
+      tags:
+        - aws_ec2_info
+
+    - role: aws_ec2_start
+      tags:
+        - aws_ec2_start
+
+    - role: aws_ec2_stop
+      tags:
+        - aws_ec2_stop
+
+    - role: aws_ec2_terminate
+      tags:
+        - aws_ec2_terminate

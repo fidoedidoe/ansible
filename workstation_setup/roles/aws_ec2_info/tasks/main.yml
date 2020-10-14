@@ -1,0 +1,6 @@
+---
+
+- name: aws ec2 info 
+  community.aws.ec2_instance_info:
+    region: "{{ region }}"
+  delegate_to: localhost
