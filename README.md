@@ -48,7 +48,9 @@ ansible-playbook -i inventory_aws_ec2.yml site.yml --tags="aws_ec2_instance_term
 
 ansible-playbook -i inventory_aws_ec2.yml site.yml --tags="aws_ec2_group_info"
 ansible-playbook -i inventory_aws_ec2.yml site.yml --tags="aws_ec2_group_provision"
-ansible-playbook -i inventory_aws_ec2.yml site.yml --extra-vars="aws_ec2_group_id=sg-003b52c47913a6048" --tags="aws_ec2_group_terminate"
+ansible-playbook -i inventory_aws_ec2.yml site.yml --tags="aws_ec2_group_terminate"                                           # <-- This role prompts user for
+                                                                                                                              #     'Security Group ID'
+ansible-playbook -i inventory_aws_ec2.yml site.yml --extra-vars="aws_ec2_group_id=sg-abc123" --tags="aws_ec2_group_terminate" # <-- No user prompt
 ```
 ---
 #### misc ad-hoc ansible  

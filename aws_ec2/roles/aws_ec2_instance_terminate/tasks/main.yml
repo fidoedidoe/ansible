@@ -17,4 +17,3 @@
       loop: "{{ result_terminate.instances }}"
 
   tags: ['never', 'aws_ec2_instance_termimate']
-

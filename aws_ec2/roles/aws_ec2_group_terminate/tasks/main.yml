@@ -1,9 +1,29 @@
 ---
 
 - name: aws ec2 group terminate block
-  block: 
+  block:
 
-    - name: aws ec2 group terminate 
+    - name: "User Input required: var: aws_ec2_group_id not defined"
+      block: 
+
+        - name: "User Input please enter Security Group ID:" 
+          pause: 
+            prompt: "Group ID (ie: sg-abc123)"
+          register: prompt
+
+        - name: set fact
+          set_fact: 
+            aws_ec2_group_id:  "{{ prompt.user_input }}"
+
+        - name: debug 
+          debug:
+            msg: 
+              - "prompt: {{prompt}}"
+              - "var: {{ aws_ec2_group_id }}"
+      when: 
+        - aws_ec2_group_id is undefined
+        
+    - name: "aws ec2 group terminate: {{ aws_ec2_group_id }}" 
       amazon.aws.ec2_group:
         state: 'absent'
         group_id: "{{ aws_ec2_group_id }}"
@@ -14,4 +34,5 @@
       debug:
         msg: 
           - "Termination Status: {{ result_terminate.changed }}"
+
   tags: ['never', 'aws_ec2_group_termimate']
