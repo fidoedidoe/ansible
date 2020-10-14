@@ -1,6 +1,6 @@
 ---
 
-- name: aws ec2 instance  provision block 
+- name: aws ec2 instance provision block 
   block: 
 
     - name: aws ec2 instance provision

@@ -1,0 +1,7 @@
+---
+
+#vars_prompt:
+#
+#  - name: aws_ec2_group_id
+#    prompt: "Group ID (ie: sg-abc123)"
+#    default: "sg-abc123"

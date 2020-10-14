@@ -4,3 +4,4 @@ ansible_python_interpreter: /usr/bin/python3
 ansible_user: ubuntu
 ansible_ssh_private_key_file: ~/.ssh/Ubuntu-Test-EC2.pem
 region: eu-west-2
+#vpc_id: vpc-17fbac7f #placed in group provision var/main.yml

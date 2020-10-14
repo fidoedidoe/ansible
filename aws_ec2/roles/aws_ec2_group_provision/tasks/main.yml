@@ -1,0 +1,30 @@
+---
+
+- name: aws ec2 group provision block 
+  block: 
+
+    - name: aws ec2 group provision
+      amazon.aws.ec2_group:
+        name: "Test - 101 "
+        description: "Test description - do not use"
+        vpc_id: "{{ vpc_id }}"
+        region: "{{ region }}"
+        tags:
+          name: "Test 101"
+        rules:
+          - proto: tcp
+            from_port: 22
+            to_port: 22
+            cidr_ip: 0.0.0.0/0
+      register: result_provision
+
+    - name: aws ec2 group provision - group id's
+      debug:
+        msg:
+          - "ID: {{ result_provision.group_id }}"
+          - "Name: {{ result_provision.group_name }}"
+          - "Description: {{ result_provision.description }}"
+          - "Inbound: {{ result_provision.ip_permissions}}"
+          - "Outbound {{ result_provision.ip_permissions_egress }}"        
+
+  tags: ['never', 'aws_ec2_group_provision']

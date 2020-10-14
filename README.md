@@ -45,7 +45,10 @@ ansible-playbook -i inventory_aws_ec2.yml site.yml --tags="aws_ec2_instance_info
 ansible-playbook -i inventory_aws_ec2.yml site.yml --tags="aws_ec2_instance_start"
 ansible-playbook -i inventory_aws_ec2.yml site.yml --tags="aws_ec2_instance_stop"
 ansible-playbook -i inventory_aws_ec2.yml site.yml --tags="aws_ec2_instance_terminate"
+
 ansible-playbook -i inventory_aws_ec2.yml site.yml --tags="aws_ec2_group_info"
+ansible-playbook -i inventory_aws_ec2.yml site.yml --tags="aws_ec2_group_provision"
+ansible-playbook -i inventory_aws_ec2.yml site.yml --extra-vars="aws_ec2_group_id=sg-003b52c47913a6048" --tags="aws_ec2_group_terminate"
 ```
 ---
 #### misc ad-hoc ansible  

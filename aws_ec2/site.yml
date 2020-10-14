@@ -25,6 +25,13 @@
     - role: aws_ec2_instance_terminate
       tags:
         - aws_ec2_instance_terminate
+        
+    - role: aws_ec2_group_provision
+      tags:
+        - aws_ec2_group_provision
     - role: aws_ec2_group_info
       tags:
         - aws_ec2_group_info
+    - role: aws_ec2_group_terminate
+      tags:
+        - aws_ec2_group_terminate
