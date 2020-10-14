@@ -1,17 +1,17 @@
 ---
 
-- name: aws ec2 info block
+- name: aws ec2 instance info block
   block: 
 
-    - name: aws ec2 info
+    - name: aws ec2 instance info
       community.aws.ec2_instance_info:
         region: "{{ region }}"
       register: result
 
-    - name: aws ec2 info - instances id's
+    - name: aws ec2 instance info - instances id's
       debug:
         msg: "ID: {{ item.instance_id }} - State: {{ item.state.name }} - Public DNS: {{ item.public_dns_name }}"
       loop: "{{ result.instances }}"
 
   #tags: always
-  tags: ['never', 'aws_ec2_info']
+  tags: ['never', 'aws_ec2_instance info']

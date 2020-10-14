@@ -28,20 +28,24 @@ ansible-inventory -i inventory_aws_ec2.yml --graph
 ---
 #### aws-instances: start/stop instances using dynamic inventory
 
-roles:
-- aws_ec2_provision: 
-- aws_ec2_info:
-- aws_ec2_start:
-- aws_ec2_stop:
-- aws_ec2_terminate: 
+Instance roles:
+- aws_ec2_instance_provision: 
+- aws_ec2_instance_info:
+- aws_ec2_instance_start:
+- aws_ec2_instance_stop:
+- aws_ec2_instance_terminate: 
+
+Security Group roles: 
+- aws_ec2_group_info
 
 Run playbook:
 ```
-ansible-playbook -i inventory_aws_ec2.yml site.yml --tags="aws_ec2_provision"
-ansible-playbook -i inventory_aws_ec2.yml site.yml --tags="aws_ec2_info"
-ansible-playbook -i inventory_aws_ec2.yml site.yml --tags="aws_ec2_start"
-ansible-playbook -i inventory_aws_ec2.yml site.yml --tags="aws_ec2_stop"
-ansible-playbook -i inventory_aws_ec2.yml site.yml --tags="aws_ec2_terminate"
+ansible-playbook -i inventory_aws_ec2.yml site.yml --tags="aws_ec2_instance_provision"
+ansible-playbook -i inventory_aws_ec2.yml site.yml --tags="aws_ec2_instance_info"
+ansible-playbook -i inventory_aws_ec2.yml site.yml --tags="aws_ec2_instance_start"
+ansible-playbook -i inventory_aws_ec2.yml site.yml --tags="aws_ec2_instance_stop"
+ansible-playbook -i inventory_aws_ec2.yml site.yml --tags="aws_ec2_instance_terminate"
+ansible-playbook -i inventory_aws_ec2.yml site.yml --tags="aws_ec2_group_info"
 ```
 ---
 #### misc ad-hoc ansible  

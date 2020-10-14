@@ -1,0 +1,21 @@
+---
+
+- name: aws ec2 group info block
+  block: 
+
+    - name: aws ec2 group info
+      amazon.aws.ec2_group_info:
+        # region: "{{ region }}"
+      register: result
+
+    - name: aws ec2 info - instances id's
+      debug:
+        msg: 
+          - "ID: {{ item.group_id }}"
+          - "Name: {{ item.group_name }}"
+          - "Description: {{ item.description }}"
+          - "Inbound: {{ item.ip_permissions}}"
+          - "Outbound {{ item.ip_permissions_egress }}"
+      loop: "{{ result.security_groups }}"
+
+  tags: ['never', 'aws_ec2_group_info']

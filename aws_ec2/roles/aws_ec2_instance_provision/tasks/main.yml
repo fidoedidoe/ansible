@@ -1,9 +1,9 @@
 ---
 
-- name: aws ec2 provision block 
+- name: aws ec2 instance  provision block 
   block: 
 
-    - name: aws ec2 provision
+    - name: aws ec2 instance provision
       community.aws.ec2_instance:
         key_name: Ubuntu-Test-EC2
         security_groups: 
@@ -23,9 +23,9 @@
               volume_type: gp2           # General Purpose SSD (gp2)
       register: result_provision
 
-    - name: aws ec2 provision - instance id's
+    - name: aws ec2 instance provision - instance id's
       debug:
         msg: "ID: {{ item.instance_id }} - State: {{ item.state.name }} - Public DNS: {{ item.public_dns_name }}"
       loop: "{{ result_provision.instances }}"
 
-  tags: ['never', 'aws_ec2_provision']
+  tags: ['never', 'aws_ec2_instance_provision']

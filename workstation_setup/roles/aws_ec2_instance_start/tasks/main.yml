@@ -1,15 +1,15 @@
 ---
 
-#- name: aws ec2 info
+#- name: aws ec2 instance info
 #  community.aws.ec2_instance_info:
 #    region: "{{ region }}"
 #  delegate_to: localhost
 
-- name: aws ec2 stop
+- name: aws ec2 instance start
   community.aws.ec2_instance:
-    state: stopped
+    state: running
     region: "{{ region }}"
     filters:
-      instance-state-name: running
+      instance-state-name: stopped
   delegate_to: localhost
 

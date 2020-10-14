@@ -1,9 +1,9 @@
 ---
 
-- name: aws ec2 terminate block
+- name: aws ec2 instance terminate block
   block: 
 
-    - name: aws ec2 terminate 
+    - name: aws ec2 instance terminate 
       community.aws.ec2_instance:
         state: 'absent'
         filters: 
@@ -11,10 +11,10 @@
           
       register: result_terminate
     
-    - name: aws ec2 terminate - instance id's
+    - name: aws ec2 instance terminate - instance id's
       debug:
         msg: "ID: {{ item.instance_id }} ; Type: {{ item.instance_type }} ; State: {{ item.state.name }}"
       loop: "{{ result_terminate.instances }}"
 
-  tags: ['never', 'aws_ec2_termimate']
+  tags: ['never', 'aws_ec2_instance_termimate']
 

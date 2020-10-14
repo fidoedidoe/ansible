@@ -23,12 +23,12 @@
     - role: developer
       tags: 
         - developer
-    - role: aws_ec2_start
+    - role: aws_ec2_instance_start
       tags:
-        - aws_ec2_start
-    - role: aws_ec2_info
+        - aws_ec2_instance_start
+    - role: aws_ec2_instance_info
       tags:
-        - aws_ec2_info
-    - role: aws_ec2_stop
+        - aws_ec2_instance_info
+    - role: aws_ec2_instance_stop
       tags:
-        - aws_ec2_stop
+        - aws_ec2_instance_stop

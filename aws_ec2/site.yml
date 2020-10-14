@@ -1,27 +1,30 @@
 ---
 
-- name: execute functional roles based on tags passed into playbook
+- name: Invoke aws ec2 roles based on tags passed into playbook
   hosts: localhost
   connection: local
   gather_facts: false
 
   roles:
-    - role: aws_ec2_provision
+    - role: aws_ec2_instance_provision
       tags:
-        - aws_ec2_provision
+        - aws_ec2_instance_provision
 
-    - role: aws_ec2_info
+    - role: aws_ec2_instance_info
       tags:
-        - aws_ec2_info
+        - aws_ec2_instance_info
 
-    - role: aws_ec2_start
+    - role: aws_ec2_instance_start
       tags:
-        - aws_ec2_start
+        - aws_ec2_instance_start
 
-    - role: aws_ec2_stop
+    - role: aws_ec2_instance_stop
       tags:
-        - aws_ec2_stop
+        - aws_ec2_instance_stop
 
-    - role: aws_ec2_terminate
+    - role: aws_ec2_instance_terminate
       tags:
-        - aws_ec2_terminate
+        - aws_ec2_instance_terminate
+    - role: aws_ec2_group_info
+      tags:
+        - aws_ec2_group_info
