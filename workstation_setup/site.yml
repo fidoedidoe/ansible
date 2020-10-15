@@ -16,6 +16,7 @@
 - name: start aws_ec2 nodes
   hosts: aws_ec2
   gather_facts: false                 # No need to gather (ssh) facts for aws_ec2 nodes
+  connection: local
   roles:
     - role: common
       tags:
@@ -23,12 +24,13 @@
     - role: developer
       tags: 
         - developer
-    - role: aws_ec2_instance_start
+    - role: ../aws_ec2/roles/aws_ec2_instance_start
       tags:
         - aws_ec2_instance_start
-    - role: aws_ec2_instance_info
+    - role: ../aws_ec2/roles/aws_ec2_instance_info
       tags:
         - aws_ec2_instance_info
-    - role: aws_ec2_instance_stop
+    - role: ../aws_ec2/roles/aws_ec2_instance_stop
       tags:
         - aws_ec2_instance_stop
+        
