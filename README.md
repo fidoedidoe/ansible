@@ -19,6 +19,8 @@ ansible-playbook -i virtualbox.yml site.yml --skip-tags "developer" --ask-become
 ansible-playbook -i virtualbox.yml site.yml --skip-tags "developer" --ask-become-pass --list-hosts
 ansible-playbook -i virtualbox.yml site.yml --limit workstation_01 --tags "common, developer" --ask-become-pass
 ansible-playbook -i virtualbox.yml -i inventory_aws_ec2.yml site.yml --tags "common" --ask-become-pass
+ansible-playbook -i inventory_aws_ec2.yml site.yml --tags "common"
+ansible-playbook -i inventory_aws_ec2.yml site.yml --tags "aws_ec2_instance_start"
 ```
 Run ansible-inventory:
 ```
