@@ -49,13 +49,11 @@ developer_apt_packages:
   - { name: 'yasm' }
   - { name: 'zip' }
   - { name: 'zlib1g-dev' }
-
-developer_apt_packages_18_04: 
   - { name: 'libncurses5' }
   - { name: 'libncurses5-dev' }
+
+developer_apt_packages_18_04: 
   - { name: 'libtinfo5' }
 
 developer_apt_packages_20_04: 
-  - { name: 'libncurses6' }
-  - { name: 'libncurses6-dev' }
   - { name: 'libtinfo6' }
